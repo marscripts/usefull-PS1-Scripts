@@ -1,4 +1,4 @@
-﻿# Define the mapping of German language names to language codes
+# Define the mapping of German language names to language codes
 Clear-Host
 $languageMap = @{
     "Deutsch (Schweiz)" = "de-CH"
@@ -41,14 +41,14 @@ function Add-Language {
 
         # Ask which language to set as the default
         $currentLanguages = Show-CurrentLanguages
-        $defaultChoice = Read-Host "Enter the number of the language you want to set as default"
+        $defaultChoice = Read-Host "Geben Sie die Nummer der Sprache ein, die Sie als Standard festlegen möchten"
         $defaultLanguage = $currentLanguages[$defaultChoice - 1].LanguageTag
         Set-WinUILanguageOverride -Language $defaultLanguage
         Set-WinDefaultInputMethodOverride -InputTip $defaultLanguage
 
-        Write-Host "Language '$languageName' ($languageCode) has been added and set as default."
+        Write-Host "Language '$languageName' ($languageCode) wurde hinzugefügt und als Standard festgelegt."
     } else {
-        Write-Host "Language '$languageName' is not in the list."
+        Write-Host "Language '$languageName' ist nicht auf die liste."
     }
 }
 
@@ -64,54 +64,54 @@ function Remove-Language {
         $newLanguages = $currentLanguages | Where-Object { $_.LanguageTag -ne $languageCode }
 
         if ($newLanguages.Count -eq 0) {
-            Write-Host "Cannot remove the only language in the list."
+            Write-Host "Die einzige Sprache in der Liste kann nicht entfernt werden."
             return
         }
 
         Set-WinUserLanguageList $newLanguages -Force
-        Write-Host "Language '$languageName' ($languageCode) has been removed."
+        Write-Host "Language '$languageName' ($languageCode) wurde entfernt"
 
         # Ask which remaining language to set as the default
         $currentLanguages = Show-CurrentLanguages
-        $defaultChoice = Read-Host "Enter the number of the language you want to set as default"
+        $defaultChoice = Read-Host "Geben Sie die Nummer der Sprache ein, die Sie als Standard festlegen möchten"
         $defaultLanguage = $currentLanguages[$defaultChoice - 1].LanguageTag
         Set-WinUILanguageOverride -Language $defaultLanguage
         Set-WinDefaultInputMethodOverride -InputTip $defaultLanguage
 
         Write-Host "Default language set to '$defaultLanguage'."
     } else {
-        Write-Host "Language '$languageName' is not in the list."
+        Write-Host "Language '$languageName' ist nicht auf die liste."
     }
 }
 
 # Main menu for the script
 function Main-Menu {
-    Write-Host "What would you like to do?"
-    Write-Host "1: Show current languages"
-    Write-Host "2: Add a language"
-    Write-Host "3: Remove a language"
-    Write-Host "4: Exit"
+    Write-Host "Was Möchten Sie gerne machen?"
+    Write-Host "1: Aktuelle Sprachen anzeigen"
+    Write-Host "2: Fügen Sie eine Sprache hinzu"
+    Write-Host "3: Die Sprache entfehrnen"
+    Write-Host "4: Ausgang"
     
-    $choice = Read-Host "Enter your choice (1/2/3/4)"
+    $choice = Read-Host "Geben Sie Ihre Wahl eine (1/2/3/4)"
 
     switch ($choice) {
         1 {
             Show-CurrentLanguages
         }
         2 {
-            $languageName = Read-Host "Enter the German name of the language to add"
+            $languageName = Read-Host "Geben Sie den deutschen Namen der hinzuzufügenden Sprache ein"
             Add-Language -languageName $languageName
         }
         3 {
-            $languageName = Read-Host "Enter the German name of the language to remove"
+            $languageName = Read-Host "Geben Sie den deutschen Namen der zu entfernenden Sprache ein"
             Remove-Language -languageName $languageName
         }
         4 {
-            Write-Host "Exiting script."
+            Write-Host "Skript wird beendet."
             return
         }
         default {
-            Write-Host "Invalid choice. Please try again."
+            Write-Host "Ungültige Auswahl. Bitte versuchen Sie es erneut."
             Main-Menu
         }
     }
