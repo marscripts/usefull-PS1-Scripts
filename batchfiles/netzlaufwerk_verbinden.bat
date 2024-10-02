@@ -18,7 +18,7 @@ set PASSWORD_1=deinPasswort1
 
 REM Überprüfen, ob das erste Netzlaufwerk bereits verbunden ist, und ggf. trennen
 if exist %DRIVE_LETTER_1%\ (
-    net use %DRIVE_LETTER_1% /delete /yes >nul 2>&1
+    net use %DRIVE_LETTER_1% /delete /y >nul 2>&1
 )
 
 REM Erstes Netzlaufwerk verbinden
@@ -41,7 +41,7 @@ set PASSWORD_2=deinPasswort2
 
 REM Überprüfen, ob das zweite Netzlaufwerk bereits verbunden ist, und ggf. trennen
 if exist %DRIVE_LETTER_2%\ (
-    net use %DRIVE_LETTER_2% /delete /yes >nul 2>&1
+    net use %DRIVE_LETTER_2% /delete /y >nul 2>&1
 )
 
 REM Zweites Netzlaufwerk verbinden
