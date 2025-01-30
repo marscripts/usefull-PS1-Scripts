@@ -1,4 +1,4 @@
-### **📄 README.md - Automated System Cleanup Script**  
+### ** Automated System Cleanup Script**  
 
 ---
 
