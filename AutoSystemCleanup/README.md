@@ -72,6 +72,7 @@ All cleanup actions are logged in:
 
 ```
 C:\Users\YourUsername\AppData\Local\Temp\CleanupLog.txt
+C:\Windows\Temp
 ```
 To open the log file directly:
 ```powershell
